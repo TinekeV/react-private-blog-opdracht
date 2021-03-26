@@ -1,12 +1,16 @@
 import React from "react";
+import { useParams } from "react-router-dom";
+import posts from "../data/posts.json";
 
 function BlogPost() {
+    const { id } = useParams();
+    console.log(posts)
+
     return (
         <div>
-            <h3>Maak hier je nieuwe blog post aan - Private page</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo, nemo.</p>
+            <p>Dit is blogpost nummer {id}.</p>
         </div>
-    );
+    )
 }
 
 export default BlogPost

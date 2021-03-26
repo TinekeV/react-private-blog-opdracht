@@ -1,12 +1,16 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function LoginPage() {
+    const history = useHistory();
+
+    function handleClick() {
+        history.push("/blogposts")
+    }
 
     return (
         <div>
-            <h3>Log hier in om te kunnen posten op je blog! - Login page</h3>
-            <button type="button">Inloggen</button>
+            <button type="button" onClick={handleClick}>Inloggen</button>
         </div>
     );
 }

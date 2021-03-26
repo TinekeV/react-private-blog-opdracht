@@ -1,37 +1,37 @@
 import React, { useState } from 'react';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
-
+import { Switch, Route, Link, Redirect } from "react-router-dom";
 import './App.css';
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import BlogOverview from "./pages/BlogOverview";
 import BlogPost from "./pages/BlogPost";
+import PrivateRoute from "./pages/PrivateRoute";
 
 function App() {
   // We houden in de state bij of iemand is "ingelogd" (simpele versie)
   const [isAuthenticated, toggleIsAuthenticated ] = useState(false);
 
   return (
-    <Router>
+
+
+    <>
         <nav>
             <ul>
                 <li>
                     <Link to="/">Homepage</Link>
                 </li>
                 <li>
-                    <Link to="/login">Login</Link>
+                    <LoginPage />
                 </li>
-                <li>
+                {isAuthenticated === true && <li>
                     <Link to="/blogposts">Overzicht Blogposts</Link>
                 </li>
-                <li>
+                }
+                {isAuthenticated === true && <li>
                     <Link to="/blog/:id">Nieuwe Blogpost</Link>
                 </li>
+                }
+                <li><button type="button">Uitloggen</button></li>
             </ul>
         </nav>
         <Switch>
@@ -45,10 +45,10 @@ function App() {
                 <BlogOverview />
             </Route>
             <Route path="/blog/:id">
-                <BlogPost />
+                {isAuthenticated === true ? <BlogPost /> : <Redirect to="/"/>}
             </Route>
         </Switch>
-    </Router>
+    </>
   );
 }
 
