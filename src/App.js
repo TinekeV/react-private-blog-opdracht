@@ -20,18 +20,27 @@ function App() {
                 <li>
                     <Link to="/">Homepage</Link>
                 </li>
-                <li>
-                    <LoginPage />
-                </li>
+
+                {/*<li>*/}
+                {/*    <button onClick={() => toggleIsAuthenticated(true)}>Inloggen</button>*/}
+                {/*</li>*/}
+
+                <button
+                    onClick={() => toggleIsAuthenticated(!isAuthenticated)}
+                >
+                    {isAuthenticated ? 'Uitloggen' : 'Inloggen'}
+                </button>
+
                 {isAuthenticated === true && <li>
                     <Link to="/blogposts">Overzicht Blogposts</Link>
                 </li>
                 }
                 {isAuthenticated === true && <li>
-                    <Link to="/blog/:id">Nieuwe Blogpost</Link>
+                    <Link to="/blog/:id">Blogpost</Link>
                 </li>
                 }
-                <li><button type="button">Uitloggen</button></li>
+                {/*<button onClick={() => toggleIsAuthenticated(false)}>Uitloggen</button>*/}
+
             </ul>
         </nav>
         <Switch>
@@ -43,9 +52,11 @@ function App() {
             </Route>
             <Route path="/blogposts" >
                 <BlogOverview />
+                {isAuthenticated === true ? <BlogOverview /> : <Redirect to="/"/>}
             </Route>
             <Route path="/blog/:id">
                 {isAuthenticated === true ? <BlogPost /> : <Redirect to="/"/>}
+                <BlogPost />
             </Route>
         </Switch>
     </>

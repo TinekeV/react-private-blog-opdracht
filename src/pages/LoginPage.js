@@ -8,6 +8,8 @@ function LoginPage() {
         history.push("/blogposts")
     }
 
+
+
     return (
         <div>
             <button type="button" onClick={handleClick}>Inloggen</button>
