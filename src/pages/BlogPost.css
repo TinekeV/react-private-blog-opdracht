@@ -1,0 +1,17 @@
+.blogpost {
+    margin: 60px;
+    padding: 30px;
+    background-color: white;
+    border: solid 2px hsl(171, 91%, 78%);
+    box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
+}
+
+.content {
+    padding: 20px;
+    border: solid 2px hsl(167, 18%, 70%);
+    box-shadow: rgba(0, 0, 0, 0.16) 0 1px 2px;
+}
+
+h6 {
+   margin-top: -10px;
+}
