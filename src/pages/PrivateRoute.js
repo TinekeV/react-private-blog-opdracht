@@ -1,12 +1,16 @@
-// import React from "react";
-// import {Link} from "react-router-dom";
-//
-// function PrivateRoute({children}) {
-//     return (
-//         <>
-//              {isAuthenticated === true ? {children} : <Redirect to="/"/>}
-//         </>
-//     )
-// }
-//
-// export default PrivateRoute
+import React from "react";
+import { Route, Redirect } from "react-router-dom";
+
+function PrivateRoute({children, isAuthenticated, ...rest }) {
+    if(isAuthenticated === false) {
+        return <Redirect to={`/`}/>
+    }
+
+    return (
+        <Route {...rest}>
+            {children}
+        </Route>
+    )
+}
+
+export default PrivateRoute

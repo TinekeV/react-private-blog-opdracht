@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Switch, Route, NavLinkLink, Redirect, NavLink} from "react-router-dom";
+import {Switch, Route, NavLink} from "react-router-dom";
 import './App.css';
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
@@ -26,10 +26,14 @@ function App() {
                 </li>}
                 <NavLink to ="/blogposts">
                     <li>
-                        <button onClick={() => toggleIsAuthenticated(true)}>Inloggen</button>
+                        <button
+                                onClick={() => toggleIsAuthenticated(true)}
+                        >Inloggen</button>
                     </li>
                 </NavLink>
-                <button onClick={() => toggleIsAuthenticated(false)}>Uitloggen</button>
+                <button
+                    onClick={() => toggleIsAuthenticated(false)}
+                >Uitloggen</button>
             </ul>
         </nav>
         <Switch>
@@ -39,12 +43,12 @@ function App() {
             <Route path="/login">
                 <LoginPage />
             </Route>
-            <Route path="/blogposts" >
-                {isAuthenticated === true ? <BlogOverview /> : <Redirect to="/"/>}
-            </Route>
-            <Route path="/blog/:id">
-                {isAuthenticated === true ? <BlogPost /> : <Redirect to="/"/>}
-            </Route>
+            <PrivateRoute path="/blogposts" isAuthenticated={isAuthenticated}>
+                <BlogOverview />
+            </PrivateRoute>
+            <PrivateRoute path="/blog/:id" isAuthenticated={isAuthenticated}>
+                <BlogPost />
+            </PrivateRoute>
         </Switch>
     </>
   );

@@ -1,26 +1,27 @@
-import React, { useEffect } from "react";
-import {Link, useParams, useRouteMatch} from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import {Link, useParams} from "react-router-dom";
 import posts from "../data/posts.json";
 import './BlogPost.css';
 
 function BlogPost() {
     const { id } = useParams();
-    const match = useRouteMatch("/blog/:id")
-    console.log(posts)
-    console.log(match)
+    console.log(posts[0].id)
 
-    useEffect(() => {
+    const [blogposts, setBlogPosts] = useState("");
 
-    }, [])
+    useEffect(() =>{
+        // data ophalen van de backend met get request
+        setBlogPosts(posts)
+
+    }, [posts])
 
     return (
         <div className="blogpost">
-            <p>Dit is blogpost nummer {id}.</p>
-            {posts && posts.map((post) => {
-                return  <section>
-                    <h3>titel: {post.title}</h3>
-                    <h6>date: {post.date}</h6>
-                    <p className="content">content: {post.content}</p>
+            {blogposts && blogposts.map((blogpost) => {
+                return <section>
+                    <h3>{blogpost.title}</h3>
+                    <h6>{blogpost.date}</h6>
+                    <p className="content">{blogpost.content}</p>
                 </section>
             })}
 

@@ -12,7 +12,8 @@ function BlogOverview() {
             <p>Total: {posts.length}</p>
             <ul className="overview-list">
                 {posts && posts.map((post) => {
-                    return <li  key={post.id}><Link to={`/blog/${post.id}`}>{post.title}</Link></li>
+                    return <li  key={post.id}>
+                        <Link to={`/blog/${post.id}`}>{post.title}</Link></li>
                 })}
             </ul>
         </div>
