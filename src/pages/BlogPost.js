@@ -1,32 +1,24 @@
-import React, { useEffect, useState } from "react";
-import {Link, useParams} from "react-router-dom";
+import React from "react";
+import {useParams} from "react-router-dom";
 import posts from "../data/posts.json";
 import './BlogPost.css';
 
 function BlogPost() {
-    const { id } = useParams();
-    console.log(posts[0].id)
 
-    const [blogposts, setBlogPosts] = useState("");
-
-    useEffect(() =>{
-        // data ophalen van de backend met get request
-        setBlogPosts(posts)
-
-    }, [posts])
+    const {id} = useParams();
+    const post = id - 1;
+    console.log(posts[post].title);
+    console.log(posts[post].content);
 
     return (
         <div className="blogpost">
-            {blogposts && blogposts.map((blogpost) => {
-                return <section>
-                    <h3>{blogpost.title}</h3>
-                    <h6>{blogpost.date}</h6>
-                    <p className="content">{blogpost.content}</p>
-                </section>
-            })}
-
+            <h4>{id}.</h4>
+            <h3>{posts[post].title}</h3>
+            <h6>{posts[post].date}</h6>
+            <p className="content">{posts[post].content}</p>
         </div>
     )
+
 };
 
 export default BlogPost
