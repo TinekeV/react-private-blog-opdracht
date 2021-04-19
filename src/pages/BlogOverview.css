@@ -1,0 +1,22 @@
+.overview {
+    margin: 60px;
+    padding-left: 30px;
+    background-color: white;
+    border: solid 2px hsl(171, 91%, 78%);
+    box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
+
+}
+
+.overview-list{
+    text-decoration: none;
+    list-style-image: url("/src/images/file-text.svg");
+}
+
+.overview-list li {
+    padding: 5px;
+}
+
+h3 {
+    font-weight: bold;
+    text-decoration: underline;
+}
